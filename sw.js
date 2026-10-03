@@ -1,7 +1,7 @@
 // BAGU LEGACY HOMES — offline-first cache
-var CACHE = 'bagu-legacy-homes-v1';
+var CACHE = 'bagu-legacy-homes-v2';
 var ASSETS = [
-  './', './index.html', './manifest.json', './favicon.png',
+  './', './index.html', './manifest.json', './favicon.png', './images/logo_small.png', './images/logo.png',
   './images/g01.jpg','./images/g02.jpg','./images/g03.jpg','./images/g04.jpg',
   './images/g05.jpg','./images/g06.jpg','./images/g07.jpg','./images/g08.jpg',
   './images/g09.jpg','./images/g10.jpg',

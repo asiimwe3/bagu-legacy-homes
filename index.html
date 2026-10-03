@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#1a3c2e">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="favicon.png">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -115,6 +115,12 @@
   .lightbox.open{display:flex}
   .lightbox img{max-width:92%;max-height:88vh;border-radius:10px}
 
+  
+  .logo-img{width:40px;height:40px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  .footer-logo{width:72px;height:72px;border-radius:50%;object-fit:cover;margin:0 auto 12px;display:block;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+  footer .tagline{font-style:italic;color:#eed9a4;margin-bottom:10px;font-size:.95rem}
+  .hero-tagline{font-style:italic;color:#f3d98a;font-size:1rem;margin-top:-14px;margin-bottom:28px}
+
   @media(max-width:840px){
     .about .wrap,.loc .wrap{grid-template-columns:1fr}
     nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--cream);flex-direction:column;padding:16px 20px;gap:14px;border-bottom:1px solid #e7e0d2}
@@ -128,7 +134,7 @@
 
 <header>
   <div class="wrap">
-    <div class="logo"><span class="mark">B</span> BAGU LEGACY HOMES</div>
+    <div class="logo"><img src="images/logo_small.png" alt="BAGU LEGACY HOMES logo" class="logo-img"> BAGU LEGACY HOMES</div>
     <button class="burger" onclick="document.querySelector('nav').classList.toggle('open')">&#9776;</button>
     <nav>
       <a href="#about">About</a>
@@ -146,6 +152,7 @@
     <div class="kicker">Fort Portal, Uganda</div>
     <h1>Your Home Away<br>From Home in Fort Portal</h1>
     <p>Clean, quiet and homely accommodation on Mugurusi Road — real comfort, real photos, minutes from the heart of the city.</p>
+      <p class="hero-tagline">&ldquo;Where Every Stay Feels Like Coming Home.&rdquo;</p>
     <div class="cta">
       <a class="btn gold big" href="https://wa.me/256772002326?text=Hello%20BAGU%20LEGACY%20HOMES%2C%20I%20would%20like%20to%20book%20a%20stay." target="_blank" rel="noopener">Book on WhatsApp</a>
       <a class="btn ghost big" style="border-color:#fff;color:#fff" href="https://www.google.com/maps/dir/?api=1&destination=BAGU+LEGACY+HOMES+Mugurusi+Rd+Fort+Portal" target="_blank" rel="noopener">Get Directions</a>
@@ -238,7 +245,9 @@
 
 <footer>
   <div class="wrap">
+    <img src="images/logo_small.png" alt="BAGU LEGACY HOMES" class="footer-logo">
     <div class="brand">BAGU LEGACY HOMES</div>
+    <p class="tagline">&ldquo;Where Every Stay Feels Like Coming Home.&rdquo;</p>
     <p>Mugurusi Road, Fort Portal, Uganda</p>
     <p><a href="https://www.google.com/maps/place/BAGU+LEGACY+HOMES/@0.6547495,30.2773202,17z" target="_blank" rel="noopener">Find us on Google Maps</a> &nbsp;&middot;&nbsp; <a href="https://wa.me/256772002326" target="_blank" rel="noopener">WhatsApp us</a></p>
     <p style="margin-top:14px;font-size:.8rem;color:#8ba394">Website by <a href="https://derycode.publicvm.com" target="_blank" rel="noopener" style="color:#eed9a4">Derycode</a></p>
