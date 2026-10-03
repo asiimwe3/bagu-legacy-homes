@@ -57,9 +57,14 @@
   .btn.ghost:hover{background:var(--green);color:#fff}
   .burger{display:none;background:none;border:none;font-size:1.5rem;color:var(--green);cursor:pointer}
 
-  .hero{position:relative;color:#fff;text-align:center}
-  .hero .bg{position:absolute;inset:0;background:url('images/g01.jpg') center/cover no-repeat;z-index:-2}
+  .hero{position:relative;color:#fff;text-align:center;overflow:hidden}
+  .hero-slider{position:absolute;inset:0;z-index:-2}
+  .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.4s ease-in-out}
+  .hero-slide.active{opacity:1}
   .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,25,18,.55),rgba(10,25,18,.35) 55%,rgba(10,25,18,.65));z-index:-1}
+  .hero-dots{position:absolute;left:0;right:0;bottom:18px;display:flex;justify-content:center;gap:8px;z-index:2}
+  .hdot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:.25s}
+  .hdot.active{background:#eed9a4;transform:scale(1.25)}
   .hero .wrap{padding:110px 20px 90px}
   .kicker{display:inline-block;background:rgba(201,162,75,.18);border:1px solid rgba(201,162,75,.5);color:#eed9a4;font-weight:700;font-size:.78rem;letter-spacing:1.5px;padding:7px 16px;border-radius:999px;margin-bottom:18px;text-transform:uppercase}
   .hero h1{font-family:Georgia,serif;font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.12;margin-bottom:16px;text-shadow:0 2px 18px rgba(0,0,0,.4)}
@@ -82,12 +87,14 @@
   .point b{display:block;color:var(--green)}
   .point span{font-size:.92rem;color:var(--muted)}
 
-  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .gallery-slider-wrap{position:relative;display:flex;align-items:center;gap:10px}
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;flex:1;min-width:0}
   .gal{border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;box-shadow:var(--shadow)}
   .gal img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;transition:.35s}
   .gal:hover img{transform:scale(1.06)}
   .gal.tall{grid-row:span 2}
   .gal.tall img{aspect-ratio:3/4.6}
+  .gal-arrow{display:none;flex:0 0 auto;width:42px;height:42px;border-radius:50%;border:1px solid #e7e0d2;background:#fff;color:var(--green);font-size:1rem;cursor:pointer;box-shadow:var(--shadow);align-items:center;justify-content:center}
 
   .loc .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
   .loc-card{background:var(--card);border:1px solid #e7e0d2;border-radius:16px;padding:28px;box-shadow:var(--shadow)}
@@ -127,6 +134,20 @@
     nav.open{display:flex}
     .burger{display:block}
     .book-form{grid-template-columns:1fr;padding:22px}
+    section{padding:52px 0}
+    .hero .wrap{padding:90px 18px 70px}
+    .gallery-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:12px;scrollbar-width:none;grid-template-columns:none}
+    .gallery-grid::-webkit-scrollbar{display:none}
+    .gal{flex:0 0 78%;scroll-snap-align:center}
+    .gal.tall{grid-row:auto}
+    .gal.tall img{aspect-ratio:3/4}
+    .gal-arrow{display:flex}
+    .loc-card{padding:22px}
+    .wrap{padding:0 16px}
+  }
+  @media(max-width:480px){
+    .gal{flex:0 0 86%}
+    .gal-arrow{width:36px;height:36px;font-size:.85rem}
   }
 </style>
 </head>
@@ -147,7 +168,13 @@
 </header>
 
 <section class="hero">
-  <div class="bg"></div><div class="overlay"></div>
+  <div class="hero-slider">
+    <div class="hero-slide active" style="background-image:url('images/g01.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/g03.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/g02.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/g04.jpg')"></div>
+  </div>
+  <div class="overlay"></div>
   <div class="wrap">
     <div class="kicker">Fort Portal, Uganda</div>
     <h1>Your Home Away<br>From Home in Fort Portal</h1>
@@ -157,6 +184,12 @@
       <a class="btn gold big" href="https://wa.me/256772002326?text=Hello%20BAGU%20LEGACY%20HOMES%2C%20I%20would%20like%20to%20book%20a%20stay." target="_blank" rel="noopener">Book on WhatsApp</a>
       <a class="btn ghost big" style="border-color:#fff;color:#fff" href="https://www.google.com/maps/dir/?api=1&destination=BAGU+LEGACY+HOMES+Mugurusi+Rd+Fort+Portal" target="_blank" rel="noopener">Get Directions</a>
     </div>
+  </div>
+  <div class="hero-dots" id="heroDots">
+    <span class="hdot active" data-i="0"></span>
+    <span class="hdot" data-i="1"></span>
+    <span class="hdot" data-i="2"></span>
+    <span class="hdot" data-i="3"></span>
   </div>
 </section>
 
@@ -183,8 +216,10 @@
       <p>Real photos of BAGU LEGACY HOMES — tap any photo to view it in full size.</p>
       <div class="rule"></div>
     </div>
-    <div class="gallery-grid">
-      <div class="gal" onclick="lb('images/g01.jpg')"><img src="images/t01.jpg" alt="BAGU LEGACY HOMES" loading="lazy"></div>
+    <div class="gallery-slider-wrap">
+      <button class="gal-arrow prev" aria-label="Previous photo" onclick="galScroll(-1)">&#10094;</button>
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gal" onclick="lb('images/g01.jpg')"><img src="images/t01.jpg" alt="BAGU LEGACY HOMES" loading="lazy"></div>
       <div class="gal tall" onclick="lb('images/g05.jpg')"><img src="images/t05.jpg" alt="BAGU LEGACY HOMES room" loading="lazy"></div>
       <div class="gal" onclick="lb('images/g02.jpg')"><img src="images/t02.jpg" alt="BAGU LEGACY HOMES interior" loading="lazy"></div>
       <div class="gal" onclick="lb('images/g03.jpg')"><img src="images/t03.jpg" alt="BAGU LEGACY HOMES" loading="lazy"></div>
@@ -194,7 +229,9 @@
       <div class="gal" onclick="lb('images/g07.jpg')"><img src="images/t07.jpg" alt="BAGU LEGACY HOMES room" loading="lazy"></div>
       <div class="gal" onclick="lb('images/g08.jpg')"><img src="images/t08.jpg" alt="BAGU LEGACY HOMES room" loading="lazy"></div>
       <div class="gal" onclick="lb('images/g10.jpg')"><img src="images/t10.jpg" alt="BAGU LEGACY HOMES room" loading="lazy"></div>
-      <div class="gal" onclick="lb('images/g11.jpg')"><img src="images/t11.jpg" alt="BAGU LEGACY HOMES corridor" loading="lazy"></div>
+        <div class="gal" onclick="lb('images/g11.jpg')"><img src="images/t11.jpg" alt="BAGU LEGACY HOMES corridor" loading="lazy"></div>
+      </div>
+      <button class="gal-arrow next" aria-label="Next photo" onclick="galScroll(1)">&#10095;</button>
     </div>
   </div>
 </section>
@@ -260,6 +297,36 @@
 <script>
 function lb(src){document.getElementById('lbimg').src=src;document.getElementById('lb').classList.add('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lb').classList.remove('open');});
+
+// Hero sliding images
+(function(){
+  var slides=document.querySelectorAll('.hero-slide');
+  var dots=document.querySelectorAll('.hdot');
+  var i=0, timer;
+  function show(n){
+    slides.forEach(function(s,idx){s.classList.toggle('active',idx===n);});
+    dots.forEach(function(d,idx){d.classList.toggle('active',idx===n);});
+    i=n;
+  }
+  function next(){show((i+1)%slides.length);}
+  function start(){timer=setInterval(next,5000);}
+  function stop(){clearInterval(timer);}
+  if(slides.length){
+    start();
+    dots.forEach(function(d){
+      d.addEventListener('click',function(){stop();show(parseInt(d.dataset.i,10));start();});
+    });
+  }
+})();
+
+// Gallery sliding/swiping (also works on desktop via arrows)
+function galScroll(dir){
+  var grid=document.getElementById('galleryGrid');
+  var tile=grid.querySelector('.gal');
+  if(!grid||!tile)return;
+  var amount=tile.getBoundingClientRect().width+14;
+  grid.scrollBy({left:dir*amount,behavior:'smooth'});
+}
 document.getElementById('bookForm').addEventListener('submit',function(e){
   e.preventDefault();
   var v=function(id){return document.getElementById(id).value.trim();};
