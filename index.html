@@ -70,7 +70,7 @@
   .hdot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:.25s}
   .hdot.active{background:#eed9a4;transform:scale(1.25)}
   .hero .wrap{padding:110px 20px 90px}
-  .kicker{display:inline-block;background:rgba(201,162,75,.18);border:1px solid rgba(201,162,75,.5);color:#eed9a4;font-weight:700;font-size:.78rem;letter-spacing:1.5px;padding:7px 16px;border-radius:999px;margin-bottom:18px;text-transform:uppercase}
+  .kicker{display:inline-block;background:rgba(16,38,29,.62);border:1px solid rgba(201,162,75,.5);color:#eed9a4;font-weight:700;font-size:.78rem;letter-spacing:1.5px;padding:7px 16px;border-radius:999px;margin-bottom:18px;text-transform:uppercase}
   .hero h1{font-family:Georgia,serif;font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.12;margin-bottom:16px;text-shadow:0 2px 18px rgba(0,0,0,.4)}
   .hero p{font-size:1.08rem;max-width:640px;margin:0 auto 30px;color:#f2efe6;text-shadow:0 1px 8px rgba(0,0,0,.4)}
   .hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
@@ -83,7 +83,7 @@
 
   .about .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
   .about .img{border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
-  .about h3{font-family:Georgia,serif;font-size:1.5rem;color:var(--green);margin-bottom:14px}
+  .about h2,.about h3{font-family:Georgia,serif;font-size:1.5rem;color:var(--green);margin-bottom:14px}
   .about p{margin-bottom:14px;color:var(--text)}
   .points{margin-top:20px;display:grid;gap:12px}
   .point{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid #e7e0d2;border-radius:12px;padding:14px 16px}
@@ -128,7 +128,7 @@
 
   footer{background:#122a1f;color:#b9cabf;padding:34px 0;text-align:center;font-size:.9rem}
   footer .brand{font-family:Georgia,serif;font-size:1.1rem;color:#fff;margin-bottom:6px}
-  footer a{color:#eed9a4}
+  footer a{color:#eed9a4;text-decoration:underline;text-underline-offset:3px}
 
   .lightbox{position:fixed;inset:0;background:rgba(10,20,15,.92);z-index:99;display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
   .lightbox.open{display:flex}
@@ -167,7 +167,7 @@
 
 <header>
   <div class="wrap">
-    <div class="logo"><img src="images/logo_small.png" alt="BAGU LEGACY HOMES logo" class="logo-img"> BAGU LEGACY HOMES</div>
+    <div class="logo"><img src="images/logo_small.png" alt="BAGU LEGACY HOMES logo" class="logo-img width="160" height="160" /> BAGU LEGACY HOMES</div>
     <button class="burger" onclick="document.querySelector('nav').classList.toggle('open')">&#9776;</button>
     <nav>
       <a href="#about">About</a>
@@ -181,10 +181,10 @@
 
 <section class="hero">
   <div class="hero-slider">
-    <div class="hero-slide active" style="background-image:url('images/g01.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('images/g03.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('images/g02.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('images/g04.jpg')"></div>
+    <div class="hero-slide active" style="background-image:url('images/g01.webp')"></div>
+    <div class="hero-slide" data-bg="images/g03.webp"></div>
+    <div class="hero-slide" data-bg="images/g02.webp"></div>
+    <div class="hero-slide" data-bg="images/g04.webp"></div>
   </div>
   <div class="overlay"></div>
   <div class="wrap">
@@ -207,9 +207,9 @@
 
 <section class="about" id="about">
   <div class="wrap">
-    <div class="img"><img src="images/g02.jpg" alt="Inside BAGU LEGACY HOMES" loading="lazy"></div>
+    <div class="img"><img src="images/g02.webp" alt="Inside BAGU LEGACY HOMES" loading="lazy" width="1200" height="900"></div>
     <div>
-      <h3>A peaceful stay in the heart of Tooro</h3>
+      <h2>A peaceful stay in the heart of Tooro</h2>
       <p>BAGU LEGACY HOMES offers comfortable, homely accommodation on Mugurusi Road in Fort Portal — Uganda's celebrated tourism city. Whether you are visiting for business, study or to explore the crater lakes, hot springs and the foothills of the Rwenzori, you will find a calm, welcoming place to rest here.</p>
       <p>Every photo on this website is a real photo of our homes — what you see is where you stay.</p>
       <div class="points">
@@ -231,12 +231,12 @@
     <div class="gallery-slider-wrap">
       <button class="gal-arrow prev" aria-label="Previous photo" onclick="galScroll(-1)">&#10094;</button>
       <div class="gallery-grid" id="galleryGrid">
-        <div class="gal tall" onclick="lb('images/g05.jpg')"><img src="images/t05.jpg" alt="BAGU LEGACY HOMES bedroom" loading="lazy"></div>
-        <div class="gal" onclick="lb('images/g02.jpg')"><img src="images/t02.jpg" alt="BAGU LEGACY HOMES bedroom" loading="lazy"></div>
-        <div class="gal" onclick="lb('images/g04.jpg')"><img src="images/t04.jpg" alt="BAGU LEGACY HOMES rooms" loading="lazy"></div>
-        <div class="gal" onclick="lb('images/g06.jpg')"><img src="images/t06.jpg" alt="BAGU LEGACY HOMES bedroom" loading="lazy"></div>
-        <div class="gal" onclick="lb('images/g07.jpg')"><img src="images/t07.jpg" alt="BAGU LEGACY HOMES bedroom" loading="lazy"></div>
-        <div class="gal" onclick="lb('images/g09.jpg')"><img src="images/t09.jpg" alt="BAGU LEGACY HOMES staircase" loading="lazy"></div>
+        <div class="gal tall" onclick="lb('images/g05.jpg')"><img src="images/t05.webp" alt="BAGU LEGACY HOMES bedroom" loading="lazy" width="360" height="640"></div>
+        <div class="gal" onclick="lb('images/g02.jpg')"><img src="images/t02.webp" alt="BAGU LEGACY HOMES bedroom" loading="lazy" width="640" height="480"></div>
+        <div class="gal" onclick="lb('images/g04.jpg')"><img src="images/t04.webp" alt="BAGU LEGACY HOMES rooms" loading="lazy" width="640" height="480"></div>
+        <div class="gal" onclick="lb('images/g06.jpg')"><img src="images/t06.webp" alt="BAGU LEGACY HOMES bedroom" loading="lazy" width="360" height="640"></div>
+        <div class="gal" onclick="lb('images/g07.jpg')"><img src="images/t07.webp" alt="BAGU LEGACY HOMES bedroom" loading="lazy" width="360" height="640"></div>
+        <div class="gal" onclick="lb('images/g09.jpg')"><img src="images/t09.webp" alt="BAGU LEGACY HOMES staircase" loading="lazy" width="640" height="640"></div>
       </div>
       <button class="gal-arrow next" aria-label="Next photo" onclick="galScroll(1)">&#10095;</button>
     </div>
@@ -251,11 +251,11 @@
       <div class="rule"></div>
     </div>
     <div class="mosaic">
-      <div class="m wide tall2" onclick="lb('images/g01.jpg')"><img src="images/t01.jpg" alt="BAGU LEGACY HOMES building" loading="lazy"></div>
-      <div class="m tall2" onclick="lb('images/g03.jpg')"><img src="images/t03.jpg" alt="BAGU LEGACY HOMES entrance" loading="lazy"></div>
-      <div class="m wide" onclick="lb('images/g08.jpg')"><img src="images/t08.jpg" alt="BAGU LEGACY HOMES balcony" loading="lazy"></div>
-      <div class="m" onclick="lb('images/g10.jpg')"><img src="images/t10.jpg" alt="BAGU LEGACY HOMES walkway" loading="lazy"></div>
-      <div class="m" onclick="lb('images/g11.jpg')"><img src="images/t11.jpg" alt="BAGU LEGACY HOMES corridor" loading="lazy"></div>
+      <div class="m wide tall2" onclick="lb('images/g01.jpg')"><img src="images/t01.webp" alt="BAGU LEGACY HOMES building" loading="lazy" width="640" height="360"></div>
+      <div class="m tall2" onclick="lb('images/g03.jpg')"><img src="images/t03.webp" alt="BAGU LEGACY HOMES entrance" loading="lazy" width="640" height="360"></div>
+      <div class="m wide" onclick="lb('images/g08.jpg')"><img src="images/t08.webp" alt="BAGU LEGACY HOMES balcony" loading="lazy" width="360" height="640"></div>
+      <div class="m" onclick="lb('images/g10.jpg')"><img src="images/t10.webp" alt="BAGU LEGACY HOMES walkway" loading="lazy" width="360" height="640"></div>
+      <div class="m" onclick="lb('images/g11.jpg')"><img src="images/t11.webp" alt="BAGU LEGACY HOMES corridor" loading="lazy" width="640" height="640"></div>
     </div>
   </div>
 </section>
@@ -307,7 +307,7 @@
 
 <footer>
   <div class="wrap">
-    <img src="images/logo_small.png" alt="BAGU LEGACY HOMES" class="footer-logo">
+    <img src="images/logo_small.png" alt="BAGU LEGACY HOMES" class="footer-logo width="160" height="160" />
     <div class="brand">BAGU LEGACY HOMES</div>
     <p class="tagline">&ldquo;Where Every Stay Feels Like Coming Home.&rdquo;</p>
     <p>Mugurusi Road, Fort Portal, Uganda</p>
@@ -327,7 +327,9 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementB
   var slides=document.querySelectorAll('.hero-slide');
   var dots=document.querySelectorAll('.hdot');
   var i=0, timer;
+  function applyBg(s){ if(s.dataset.bg){ s.style.backgroundImage="url('"+s.dataset.bg+"')"; delete s.dataset.bg; } }
   function show(n){
+    applyBg(slides[n]); applyBg(slides[(n+1)%slides.length]);
     slides.forEach(function(s,idx){s.classList.toggle('active',idx===n);});
     dots.forEach(function(d,idx){d.classList.toggle('active',idx===n);});
     i=n;
